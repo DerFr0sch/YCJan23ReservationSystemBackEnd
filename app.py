@@ -1,6 +1,7 @@
 from flask import Flask
 import felix
 import vossa
+import daan
 
 app = Flask(__name__)
 
@@ -16,3 +17,8 @@ def vanFelix():
 @app.route("/vossa")
 def vanVossa():
     return vossa.vanvossa()
+
+
+@app.route("/daan/<kamernummer>")
+def vanDaan(kamernummer):
+    return daan.vandaan(kamernummer)
