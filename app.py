@@ -2,6 +2,7 @@ from flask import Flask
 import felix
 import vossa
 import daan
+import michael
 
 app = Flask(__name__)
 
@@ -22,3 +23,8 @@ def vanVossa():
 @app.route("/daan/<kamernummer>")
 def vanDaan(kamernummer):
     return daan.vandaan(kamernummer)
+
+
+@app.route("/michael/<zoekterm>")
+def vanMichael(zoekterm):
+    return michael.vanmichael(zoekterm)
