@@ -3,14 +3,14 @@ import json
 
 def vanmichael(abc):
     con = mariadb.connect(
-        host="localhost",  #port erbij indien mac
-        user="root",
-        password="",
-        database="testb"
+        host="davidmichaelkevin.mysql.database.azure.com",  #port erbij indien mac
+        user="admindavidmichaelkevin",
+        password="abcd1234ABCD!@#$",
+        database="hotel"
     )
     mycursor = con.cursor()
 
-    mycursor.execute("SELECT * FROM kamer")
+    mycursor.execute("SELECT * FROM hotelkamer")
 
     myresult = mycursor.fetchall()
 
