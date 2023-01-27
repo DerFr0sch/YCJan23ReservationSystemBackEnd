@@ -1,16 +1,17 @@
 import mariadb
 import json
 
-def getKamerinfo():
+def getKamerinfo(abc):
     con = mariadb.connect(
         host="localhost",  #port erbij indien mac
         user="root",
         password="",
         database="hoteldatabase"
     )
+
     mycursor = con.cursor()
 
-    mycursor.execute("SELECT * FROM kamerinformatie")
+    mycursor.execute("SELECT * FROM kamer")
 
     myresult = mycursor.fetchall()
 
