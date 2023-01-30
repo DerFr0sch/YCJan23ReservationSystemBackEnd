@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
 import getKamerinfo
-
+import sendKamerinfo
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -13,3 +13,7 @@ def hello_world():
 @app.route("/getKamerinfo/<zoekterm>")
 def showKamerinfo(zoekterm):
     return getKamerinfo.getKamerinfo(zoekterm)
+
+@app.route("/sendKamerinfo/<zoekterm>")
+def storeKamerinfo(zoekterm):
+    return sendKamerinfo.sendKamerinfob(zoekterm)
