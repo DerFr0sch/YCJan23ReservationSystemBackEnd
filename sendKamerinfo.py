@@ -1,7 +1,7 @@
-import mariadb
+import mysql.connector
 
 def sendKamerinfob(abc):
-    con = mariadb.connect(
+    con = mysql.connector.connect(
         host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac
         user="Kevindatahotel",
         password="abcd1234ABCD!@#$",
