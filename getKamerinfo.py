@@ -1,8 +1,8 @@
-import mariadb
+import mysql.connector
 import json
 
 def getKamerinfo(abc):
-    con = mariadb.connect(
+    con = mysql.connector.connect(
         host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac
         user="Kevindatahotel",
         password="abcd1234ABCD!@#$",
