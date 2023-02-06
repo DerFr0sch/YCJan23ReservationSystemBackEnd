@@ -24,3 +24,7 @@ def storeKamerinfo():
     #return type+prijs+beschrijving+foto+nummer
     return sendKamerinfo.sendKamerinfob(type,prijs,beschrijving,foto,nummer)
 
+@app.route("/dbreserveerkamer/<kamerid>")
+def showKamerinfo(kamerid):
+    return getKamerinfo.getKamerinfo(kamerid)
+
