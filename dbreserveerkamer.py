@@ -10,12 +10,12 @@ def sendKamerreservering(kamerid):
 
     mycursor = con.cursor()
 
-    sql = "UPDATE hotelkamer SET reservering = 1 WHERE kamer_id = "+kamerid+""
-    val = (kamerid)
+    sql = "UPDATE hotelkamer SET reservering = 1 WHERE kamer_id = %s"
+    val = (kamerid,)
     mycursor.execute(sql, val)
     #print(val,flush=True)
     con.commit()
     print(mycursor.rowcount, "Kamer gereserveerd")
-    return "opgeslagen"
+    return "gereserveerd"
 
 #sendKamerinfo("test1")
