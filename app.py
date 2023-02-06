@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS, cross_origin
 import getKamerinfo
 import sendKamerinfo
+import dbreserveerkamer
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -25,6 +26,6 @@ def storeKamerinfo():
     return sendKamerinfo.sendKamerinfob(type,prijs,beschrijving,foto,nummer)
 
 @app.route("/dbreserveerkamer/<kamerid>")
-def showKamerinfo(kamerid):
-    return getKamerinfo.getKamerinfo(kamerid)
+def reserveerKamer(kamerid):
+    return dbreserveerkamer.dbreserveerkamer(kamerid)
 
