@@ -1,5 +1,4 @@
 import mysql.connector
-import requests
 
 url = 'http://localhost:5000/sendKamerinfo/'
 myobj = ('kamer type', 'kamer prijs')
