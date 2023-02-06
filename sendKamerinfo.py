@@ -1,4 +1,4 @@
-import mariadb
+import mysql.connector
 import requests
 
 url = 'http://localhost:5000/sendKamerinfo/'
@@ -6,7 +6,7 @@ myobj = ('kamer type', 'kamer prijs')
 
 
 def sendKamerinfob(type,prijs,beschrijving,foto,nummer):
-    con = mariadb.connect(
+    con = mysql.connector.connect(
         host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac
         user="Kevindatahotel",
         password="abcd1234ABCD!@#$",
