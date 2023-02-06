@@ -27,5 +27,5 @@ def storeKamerinfo():
 
 @app.route("/dbreserveerkamer/<kamerid>")
 def reserveerKamer(kamerid):
-    return dbreserveerkamer.dbreserveerkamer(kamerid)
+    return dbreserveerkamer.sendKamerreservering(kamerid)
 
