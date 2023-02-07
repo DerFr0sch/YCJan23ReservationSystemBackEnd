@@ -16,9 +16,11 @@ def sendKamerreservering(kamerid):
     mycursor.execute(sql, val)
 
     reserveringmoment = int(time.time())
-    sql2 = "UPDATE hotelkamer SET Tijd = "+str(reserveringmoment)+" WHERE kamer_id = %s"
+    sql2 = "UPDATE hotelkamer SET tijd = "+str(reserveringmoment)+" WHERE kamer_id = %s"
     mycursor.execute(sql2, val)
+
     #print(val,flush=True)
+    
     con.commit()
     print(mycursor.rowcount, "Kamer gereserveerd")
     return "gereserveerd"
