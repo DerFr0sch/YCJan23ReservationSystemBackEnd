@@ -3,6 +3,7 @@ from flask_cors import CORS, cross_origin
 import getKamerinfo
 import sendKamerinfo
 import dbreserveerkamer
+import dbfetchkamer
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -29,3 +30,6 @@ def storeKamerinfo():
 def reserveerKamer(kamerid):
     return dbreserveerkamer.sendKamerreservering(kamerid)
 
+@app.route("/dbfetchkamer/<kamerid>")
+def fetchKamer(kamerid):    
+    return dbfetchkamer.getSpecifickamer(kamerid)

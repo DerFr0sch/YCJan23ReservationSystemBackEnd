@@ -1,7 +1,7 @@
 import mysql.connector
-import time
+import json
 
-def sendKamerreservering(kamerid):
+def getSpecifickamer(kamerid):
     con = mysql.connector.connect(
         host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac
         user="Kevindatahotel",
@@ -11,12 +11,15 @@ def sendKamerreservering(kamerid):
 
     mycursor = con.cursor()
 
-    sql = "UPDATE hotelkamer SET reservering = 1 WHERE kamer_id = %s"
+    sql = "SELECT * FROM hotelkamer WHERE kamer_id = %s"
     val = (kamerid,)
+    
     mycursor.execute(sql, val)
-    #print(val,flush=True)
-    con.commit()
-    print(mycursor.rowcount, "Kamer gereserveerd")
-    return "gereserveerd"
 
-#sendKamerinfo("test1")
+    myresult = mycursor.fetchall()
+    print(myresult)
+    ab=json.dumps(myresult)
+    #ab=json.dumps( [dict(ix) for ix in myresult] )
+    print(ab)
+
+    return ab
