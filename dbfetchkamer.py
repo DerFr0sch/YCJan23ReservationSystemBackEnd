@@ -1,7 +1,7 @@
 import mysql.connector
 import json
 
-def getKamerinfo(abc):
+def getSpecifickamer(kamerid):
     con = mysql.connector.connect(
         host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac
         user="Kevindatahotel",
@@ -11,7 +11,10 @@ def getKamerinfo(abc):
 
     mycursor = con.cursor()
 
-    mycursor.execute("SELECT * FROM hotelkamer")
+    sql = "SELECT * FROM hotelkamer WHERE kamer_id = %s"
+    val = (kamerid,)
+    
+    mycursor.execute(sql, val)
 
     myresult = mycursor.fetchall()
 
@@ -19,5 +22,3 @@ def getKamerinfo(abc):
     #ab=json.dumps( [dict(ix) for ix in myresult] )
     print(ab)
     return ab
-
-#vanmichael()
