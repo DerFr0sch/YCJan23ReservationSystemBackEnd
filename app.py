@@ -4,6 +4,7 @@ import getKamerinfo
 import sendKamerinfo
 import dbreserveerkamer
 import dbfetchkamer
+import dbboekkamer
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -29,6 +30,10 @@ def storeKamerinfo():
 @app.route("/dbreserveerkamer/<kamerid>")
 def reserveerKamer(kamerid):
     return dbreserveerkamer.sendKamerreservering(kamerid)
+
+@app.route("/dbboekkamer/<kamerid>")
+def boekKamer(kamerid):
+    return dbboekkamer.sendKamerboeking(kamerid)
 
 @app.route("/dbfetchkamer/<kamerid>")
 def fetchKamer(kamerid):
