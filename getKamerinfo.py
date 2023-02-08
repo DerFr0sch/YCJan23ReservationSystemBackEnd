@@ -15,9 +15,6 @@ def getKamerinfo(abc):
 
     myresult = mycursor.fetchall()
 
-    for x in myresult:
-        print(x[2])
-
     ab=json.dumps(myresult, indent=4, sort_keys=True, default=str)
     #ab=json.dumps( [dict(ix) for ix in myresult] )
     print(ab)

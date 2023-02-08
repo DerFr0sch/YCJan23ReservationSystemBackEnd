@@ -31,5 +31,5 @@ def reserveerKamer(kamerid):
     return dbreserveerkamer.sendKamerreservering(kamerid)
 
 @app.route("/dbfetchkamer/<kamerid>")
-def fetchKamer(kamerid):    
+def fetchKamer(kamerid):
     return dbfetchkamer.getSpecifickamer(kamerid)
