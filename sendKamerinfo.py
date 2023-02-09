@@ -1,9 +1,5 @@
 import mysql.connector
 
-url = 'http://localhost:5000/sendKamerinfo/'
-myobj = ('kamer type', 'kamer prijs')
-
-
 def sendKamerinfob(type,prijs,beschrijving,foto,nummer):
     con = mysql.connector.connect(
         host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac
