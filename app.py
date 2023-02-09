@@ -5,6 +5,7 @@ import sendKamerinfo
 import dbreserveerkamer
 import dbfetchkamer
 import dbboekkamer
+import getgeboekteKamerinfo
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -16,6 +17,10 @@ def hello_world():
 @app.route("/getKamerinfo/<zoekterm>")
 def showKamerinfo(zoekterm):
     return getKamerinfo.getKamerinfo(zoekterm)
+
+@app.route("/getgeboekteKamerinfo/<zoekterm>")
+def showgeboekteKamerinfo(zoekterm):
+    return getgeboekteKamerinfo.getgeboekteKamerinfo(zoekterm)
 
 @app.route("/sendKamerinfo")
 def storeKamerinfo():
