@@ -5,6 +5,7 @@ import sendKamerinfo
 import dbreserveerkamer
 import dbfetchkamer
 import dbboekkamer
+import sendGastgegevens
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -24,7 +25,6 @@ def storeKamerinfo():
     beschrijving = str(request.args.get('fbeschrijving'))
     foto = str(request.args.get('ffoto'))
     nummer = str(request.args.get('fnummer'))
-    #return type+prijs+beschrijving+foto+nummer
     return sendKamerinfo.sendKamerinfob(type,prijs,beschrijving,foto,nummer)
 
 @app.route("/dbreserveerkamer/<kamerid>")
@@ -38,3 +38,16 @@ def boekKamer(kamerid):
 @app.route("/dbfetchkamer/<kamerid>")
 def fetchKamer(kamerid):
     return dbfetchkamer.getSpecifickamer(kamerid)
+
+@app.route("/sendGastgegevens")
+def storeGastgegevens():
+    voornaam = str(request.args.get('kvoornaam'))
+    achternaam = str(request.args.get('kachternaam'))
+    voorvoegsel = str(request.args.get('kvoorvoegsel'))
+    postcode = str(request.args.get('kpcode'))
+    adres = str(request.args.get('kadres'))
+    land = str(request.args.get('kland'))
+    tel = str(request.args.get('ktel'))
+    email = str(request.args.get('kemail'))
+    betaalmethode = str(request.args.get('kbetaalmethode'))
+    return sendGastgegevens.sendGastgegevensdb(voornaam, achternaam, voorvoegsel, postcode, adres, land, tel, email, betaalmethode)
