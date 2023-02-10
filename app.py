@@ -36,10 +36,6 @@ def storeKamerinfo():
 def reserveerKamer(kamerid):
     return dbreserveerkamer.sendKamerreservering(kamerid)
 
-@app.route("/dbboekkamer/<kamerid>")
-def boekKamer(kamerid):
-    return dbboekkamer.sendKamerboeking(kamerid)
-
 @app.route("/dbfetchkamer/<kamerid>")
 def fetchKamer(kamerid):
     return dbfetchkamer.getSpecifickamer(kamerid)
@@ -55,4 +51,13 @@ def storeGastgegevens():
     tel = str(request.args.get('ktel'))
     email = str(request.args.get('kemail'))
     betaalmethode = str(request.args.get('kbetaalmethode'))
+    boekKamer()
     return sendGastgegevens.sendGastgegevensdb(voornaam, achternaam, voorvoegsel, postcode, adres, land, tel, email, betaalmethode)
+    
+def boekKamer():
+    kamerid = str(request.args.get('kamerid'))
+    totprijs = str(request.args.get('totaleprijs'))
+    boeking_begin = str(request.args.get('kbegindat'))
+    boeking_eind = str(request.args.get('keinddat'))
+    betaalmet = str(request.args.get('kbetaalmethode'))
+    return dbboekkamer.sendKamerboeking(kamerid, totprijs, boeking_begin, boeking_eind, betaalmet)

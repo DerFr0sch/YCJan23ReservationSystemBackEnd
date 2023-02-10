@@ -17,11 +17,11 @@ def sendGastgegevensdb(voornaam, achternaam, voorvoegsel, postcode, adres, land,
     mycursor.execute(sql, val)
     con.commit()
 
-    ## HIER IS IETS MET MEMBER_ID NODIG DIE HIERBOVEN WORDT AANGEMAAKT ZODAT DE BETAALMETHODE BIJ DE JUISTE MEMBER KAN WORDEN TOEGEVOEGD ##
+    ## HIER IS IETS MET MEMBER_ID NODIG DIE HIERBOVEN WORDT AANGEMAAKT ZODAT DE BETAALMETHODE BIJ DE JUISTE MEMBER KAN WORDEN TOEGEVOEGD
     # mycursor2 = con.cursor()
     # sql2 = "INSERT INTO boeking (betaalmethode) VALUES (%s)"
     # val2 = (betaalmethode,) 
     # mycursor2.execute(sql2, val2)  
     # con.commit()
 
-    return "Uw gastgegevens zijn toegevoegd"
+    return "Kamer is geboekt ;)"
