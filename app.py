@@ -6,6 +6,7 @@ import dbreserveerkamer
 import dbfetchkamer
 import dbboekkamer
 import getgeboekteKamerinfo
+import checkMember
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -43,3 +44,7 @@ def boekKamer(kamerid):
 @app.route("/dbfetchkamer/<kamerid>")
 def fetchKamer(kamerid):
     return dbfetchkamer.getSpecifickamer(kamerid)
+
+@app.route("/checkMember/<memberEmail>")
+def dbcheckMember(memberEmail):
+    return checkMember.checkEmailadress(memberEmail)
