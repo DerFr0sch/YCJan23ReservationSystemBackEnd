@@ -1,6 +1,6 @@
 import mysql.connector
 
-def sendKamerboeking(kamerid, totprijs, boeking_begin, boeking_eind, betaalmet):
+def sendKamerboeking(kamerid, totprijs, boeking_begin, boeking_eind, memberid, betaalmet):
     con = mysql.connector.connect(
         host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac
         user="Kevindatahotel",
@@ -10,10 +10,10 @@ def sendKamerboeking(kamerid, totprijs, boeking_begin, boeking_eind, betaalmet):
 
     mycursor = con.cursor()
     
-    sql = "INSERT INTO boeking (kamer_id, totaalprijs, boekingsdatum_begin, boekingsdatum_eind, betaalmethode) VALUES (%s, %s, %s, %s, %s)"
-    val = (kamerid, totprijs, boeking_begin, boeking_eind, betaalmet)
+    sql = "INSERT INTO boeking (kamer_id, totaalprijs, boekingsdatum_begin, boekingsdatum_eind, member_id, betaalmethode) VALUES (%s, %s, %s, %s, %s, %s)"
+    val = (kamerid, totprijs, boeking_begin, boeking_eind, memberid, betaalmet)
     print(val)
     mycursor.execute(sql, val)
 
     con.commit()
-    return "geboekt"
+    return 
