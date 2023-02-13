@@ -5,6 +5,7 @@ import sendKamerinfo
 import dbreserveerkamer
 import dbfetchkamer
 import dbboekkamer
+import sendGastgegevens
 import getgeboekteKamerinfo
 import checkMember
 
@@ -30,21 +31,34 @@ def storeKamerinfo():
     beschrijving = str(request.args.get('fbeschrijving'))
     foto = str(request.args.get('ffoto'))
     nummer = str(request.args.get('fnummer'))
-    #return type+prijs+beschrijving+foto+nummer
     return sendKamerinfo.sendKamerinfob(type,prijs,beschrijving,foto,nummer)
 
 @app.route("/dbreserveerkamer/<kamerid>")
 def reserveerKamer(kamerid):
     return dbreserveerkamer.sendKamerreservering(kamerid)
 
-@app.route("/dbboekkamer/<kamerid>")
-def boekKamer(kamerid):
-    return dbboekkamer.sendKamerboeking(kamerid)
-
 @app.route("/dbfetchkamer/<kamerid>")
 def fetchKamer(kamerid):
     return dbfetchkamer.getSpecifickamer(kamerid)
 
-@app.route("/checkMember/<memberEmail>")
-def dbcheckMember(memberEmail):
-    return checkMember.checkEmailadress(memberEmail)
+@app.route("/sendGastgegevens")
+def storeGastgegevens():
+    voornaam = str(request.args.get('kvoornaam'))
+    achternaam = str(request.args.get('kachternaam'))
+    voorvoegsel = str(request.args.get('kvoorvoegsel'))
+    postcode = str(request.args.get('kpcode'))
+    adres = str(request.args.get('kadres'))
+    land = str(request.args.get('kland'))
+    tel = str(request.args.get('ktel'))
+    email = str(request.args.get('kemail'))
+    betaalmethode = str(request.args.get('kbetaalmethode'))
+    boekKamer()
+    return sendGastgegevens.sendGastgegevensdb(voornaam, achternaam, voorvoegsel, postcode, adres, land, tel, email, betaalmethode)
+    
+def boekKamer():
+    kamerid = str(request.args.get('kamerid'))
+    totprijs = str(request.args.get('totaleprijs'))
+    boeking_begin = str(request.args.get('kbegindat'))
+    boeking_eind = str(request.args.get('keinddat'))
+    betaalmet = str(request.args.get('kbetaalmethode'))
+    return dbboekkamer.sendKamerboeking(kamerid, totprijs, boeking_begin, boeking_eind, betaalmet)
