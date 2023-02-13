@@ -7,6 +7,7 @@ import dbfetchkamer
 import dbboekkamer
 import sendGastgegevens
 import getgeboekteKamerinfo
+import felix
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -61,3 +62,7 @@ def boekKamer():
     boeking_eind = str(request.args.get('keinddat'))
     betaalmet = str(request.args.get('kbetaalmethode'))
     return dbboekkamer.sendKamerboeking(kamerid, totprijs, boeking_begin, boeking_eind, betaalmet)
+
+@app.route("/testfelix")
+def testfelix():
+    return felix.testfelixinfile(12, 1200, 11112023, 11112023, "ideal")
