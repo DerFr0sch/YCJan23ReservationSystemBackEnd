@@ -1,6 +1,6 @@
 import mysql.connector
 
-def sendKamerinfob(type,prijs,beschrijving,foto,nummer):
+def sendMembergegevensdb(voornaam, achternaam, voorvoegsel, postcode, adres, land, tel, email, wachtwoord):
     con = mysql.connector.connect(
         host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac
         user="Kevindatahotel",
@@ -10,17 +10,9 @@ def sendKamerinfob(type,prijs,beschrijving,foto,nummer):
 
     mycursor = con.cursor()
 
-    # type = abc
-    # prijs = 25
-    # beschrijving = "mooie kamertje"
-    # foto = "hotel.jpg"
-    # nummer = 455
-    sql = "INSERT INTO hotelkamer (kamertype, prijs, beschrijving, kamerfoto, kamernummer) VALUES (%s, %s, %s, %s, %s)"
-    val = (type, prijs, beschrijving, foto, nummer)
+    sql = "INSERT INTO member (voornaam, achternaam, voorvoegsel, adres_straatnaam_huisnummer, adres_postcode, adres_land, telefoonnummer, emailadress, wachtwoord) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    val = (voornaam, achternaam, voorvoegsel, adres, postcode, land, tel, email, wachtwoord)
     mycursor.execute(sql, val)
-    #print(val,flush=True)
     con.commit()
-    print(mycursor.rowcount, "kamer toegevoegd")
-    return "opgeslagen"
-
-#sendKamerinfo("test1")
+    print("het is gelukt.")
+    return "Member is opgeslagen."

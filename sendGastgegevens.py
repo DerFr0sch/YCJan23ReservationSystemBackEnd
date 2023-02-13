@@ -1,7 +1,5 @@
 import mysql.connector
 
-url = 'http://localhost:5000/sendGastgegevens/'
-
 def sendGastgegevensdb(voornaam, achternaam, voorvoegsel, postcode, adres, land, tel, email, betaalmethode):
     con = mysql.connector.connect(
         host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac

@@ -8,9 +8,13 @@ import dbboekkamer
 import sendGastgegevens
 import getgeboekteKamerinfo
 import checkMember
+import saveMember
 
 app = Flask(__name__)
+app.config['CORS_HEADERS'] = 'Content-Type'
 cors = CORS(app)
+
+
 
 @app.route("/")
 def hello_world():
@@ -62,3 +66,21 @@ def boekKamer():
     boeking_eind = str(request.args.get('keinddat'))
     betaalmet = str(request.args.get('kbetaalmethode'))
     return dbboekkamer.sendKamerboeking(kamerid, totprijs, boeking_begin, boeking_eind, betaalmet)
+
+@app.route("/checkMember/<memberid>")
+def dbcheckMember(memberid):
+    return checkMember.checkEmailadress(memberid)
+
+@app.route('/saveMember', methods=['POST'])
+def storeMembergegevens():
+
+    voornaam = request.json['voornaam']
+    achternaam = request.json['kachternaam']
+    voorvoegsel = request.json['voorvoegsel']
+    postcode= request.json['postcode']
+    adres = request.json['adres']
+    land = request.json['land']
+    tel = request.json['tel']
+    email = request.json['email']
+    wachtwoord = request.json['wachtwoord']
+    return saveMember.sendMembergegevensdb(voornaam, achternaam, voorvoegsel, postcode, adres, land, tel, email, wachtwoord)
