@@ -15,6 +15,10 @@ cors = CORS(app)
 def hello_world():
     return "<p>Hello, World!</p>"
 
+@app.route("/testb", methods=["POST"])
+def testb():
+    return "testb"
+
 @app.route("/getKamerinfo/<zoekterm>")
 def showKamerinfo(zoekterm):
     return getKamerinfo.getKamerinfo(zoekterm)
@@ -40,25 +44,24 @@ def reserveerKamer(kamerid):
 def fetchKamer(kamerid):
     return dbfetchkamer.getSpecifickamer(kamerid)
 
-@app.route("/sendGastgegevens")
+@app.route("/sendGastgegevens", methods=["POST"])
 def storeGastgegevens():
-    voornaam = str(request.args.get('kvoornaam'))
-    achternaam = str(request.args.get('kachternaam'))
-    voorvoegsel = str(request.args.get('kvoorvoegsel'))
-    postcode = str(request.args.get('kpcode'))
-    adres = str(request.args.get('kadres'))
-    land = str(request.args.get('kland'))
-    tel = str(request.args.get('ktel'))
-    email = str(request.args.get('kemail'))
-    betaalmethode = str(request.args.get('kbetaalmethode'))
+    voornaam = str(request.json['kvoornaam'])
+    achternaam = str(request.json['kachternaam'])
+    voorvoegsel = str(request.json['kvoorvoegsel'])
+    postcode = str(request.json['kpcode'])
+    adres = str(request.json['kadres'])
+    land = str(request.json['kland'])
+    tel = str(request.json['ktel'])
+    email = str(request.json['kemail'])
+    betaalmethode = str(request.json['kbetaalmethode'])
     memberid = sendGastgegevens.sendGastgegevensdb(voornaam, achternaam, voorvoegsel, postcode, adres, land, tel, email, betaalmethode)
-    return boekKamer(memberid)
+    kamerid = str(request.json['kkamerid'])
+    betaalmet = str(request.json['kbetaalmethode'])
+    totprijs = str(request.json['ktotaleprijs'])
+    boeking_begin = str(request.json['kstartdata'])
+    boeking_eind = str(request.json['keinddata'])
+    return boekKamer(kamerid, totprijs, boeking_begin, boeking_eind, memberid, betaalmet)
     
-def boekKamer(memid):
-    kamerid = str(request.args.get('kamerid'))
-    totprijs = str(request.args.get('totaleprijs'))
-    boeking_begin = str(request.args.get('kbegindat'))
-    boeking_eind = str(request.args.get('keinddat'))
-    memberid = str(memid)
-    betaalmet = str(request.args.get('kbetaalmethode'))
+def boekKamer(kamerid, totprijs, boeking_begin, boeking_eind, memberid, betaalmet):
     return dbboekkamer.sendKamerboeking(kamerid, totprijs, boeking_begin, boeking_eind, memberid, betaalmet)

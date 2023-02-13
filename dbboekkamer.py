@@ -16,4 +16,4 @@ def sendKamerboeking(kamerid, totprijs, boeking_begin, boeking_eind, memberid, b
     mycursor.execute(sql, val)
 
     con.commit()
-    return 
+    return 'geboekt'
