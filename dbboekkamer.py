@@ -16,4 +16,10 @@ def sendKamerboeking(kamerid, totprijs, boeking_begin, boeking_eind, memberid, b
     mycursor.execute(sql, val)
 
     con.commit()
-    return 'geboekt'
+
+    sql = "SELECT * FROM boeking ORDER BY boeking_id DESC"   
+
+    mycursor.execute(sql)
+    
+    myresult = mycursor.fetchall()
+    return [str(myresult[0][0]), str(kamerid), str(totprijs), boeking_begin, boeking_eind, str(memberid), betaalmet]
