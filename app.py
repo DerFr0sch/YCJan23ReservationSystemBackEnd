@@ -9,6 +9,7 @@ import sendGastgegevens
 import getgeboekteKamerinfo
 import checkMember
 import saveMember
+import memberLogin
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -88,3 +89,10 @@ def storeMembergegevens():
     email = request.json['email']
     wachtwoord = request.json['wachtwoord']
     return saveMember.sendMembergegevensdb(voornaam, achternaam, voorvoegsel, postcode, adres, land, tel, email, wachtwoord)
+
+@app.route("/memberLogin")
+def dbLoginMember():
+    userEmail = str(request.json['email'])
+    userPassword = str(request.json['wachtwoord'])
+    print(userEmail, userPassword)
+    return memberLogin.login(userEmail, userPassword)
