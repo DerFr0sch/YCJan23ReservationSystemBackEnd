@@ -90,9 +90,9 @@ def storeMembergegevens():
     wachtwoord = request.json['wachtwoord']
     return saveMember.sendMembergegevensdb(voornaam, achternaam, voorvoegsel, postcode, adres, land, tel, email, wachtwoord)
 
-@app.route("/memberLogin")
+@app.route("/memberLogin", methods=["POST"])
+@cross_origin()
 def dbLoginMember():
     userEmail = str(request.json['email'])
     userPassword = str(request.json['wachtwoord'])
-    print(userEmail, userPassword)
     return memberLogin.login(userEmail, userPassword)

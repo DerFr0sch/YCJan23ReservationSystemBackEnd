@@ -2,11 +2,9 @@ import hashlib
 import json
 import mysql.connector
 
-#https://yc2301hotelbackend.azurewebsites.net
-
 def login(userEmail, userPassword):
 
-    loginState = False
+    loginState = "false"
 
     con = mysql.connector.connect(
         host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac
@@ -17,22 +15,36 @@ def login(userEmail, userPassword):
 
     mycursor = con.cursor()
 
-    storedEmail = mycursor.execute("SELECT emailadress FROM hotel_database.member")
-    storedPassword = mycursor.execute("SELECT wachtwoord FROM hotel_database.member")
+
+    getStoredemail = "SELECT emailadress FROM hotel_database.member WHERE emailadress = %s"
+    val = (userEmail,)    
+
+    mycursor.execute(getStoredemail, val)
+
+    storedEmail = mycursor.fetchall()
+
+    getStoredwachtwoord = "SELECT wachtwoord FROM hotel_database.member WHERE emailadress = %s"
+    val2 = (userEmail,)    
+
+    mycursor.execute(getStoredwachtwoord, val2)
+
+    storedPassword = mycursor.fetchall()
 
     # auth = userPassword.encode()
     # auth_hash = hashlib.md5(auth).hexdigest()
 
-    print("user email = "+userEmail)
-    print("user password = "+userPassword)
-    print("stored email = "+storedEmail)
-    print("stored password = "+storedPassword)
-
-    if storedEmail == userEmail and storedPassword == userPassword:
+    if storedEmail[0][0] == userEmail and storedPassword[0][0] == userPassword:
         print("Succesvol ingelogd!")
-        loginState = True
-    
+
+        getUserid = "SELECT member_id FROM hotel_database.member WHERE emailadress = %s"
+        val = (userEmail,)    
+
+        mycursor.execute(getUserid, val)
+        loginState = str(mycursor.fetchall()[0][0])
+        print(loginState)
+
     else:
         print("E-mail of wachtwoord onjuist.")
     
+    print(loginState)
     return loginState
