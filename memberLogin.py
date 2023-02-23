@@ -28,7 +28,6 @@ def login(userEmail, userPassword):
     mycursor.execute(getStoredwachtwoord, val2)
 
     storedPassword = mycursor.fetchall()
-
     # auth = userPassword.encode()
     # auth_hash = hashlib.md5(auth).hexdigest()
 
@@ -40,10 +39,6 @@ def login(userEmail, userPassword):
 
         mycursor.execute(getUserid, val)
         loginState = str(mycursor.fetchall()[0][0])
-        print(loginState)
-
     else:
         print("E-mail of wachtwoord onjuist.")
-    
-    print(loginState)
     return loginState
