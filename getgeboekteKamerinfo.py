@@ -3,9 +3,9 @@ import json
 
 def getgeboekteKamerinfo(abc):
     con = mysql.connector.connect(
-        host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac
-        user="Kevindatahotel",
-        password="abcd1234ABCD!@#$",
+        host="hoteldatabase1.mysql.database.azure.com",  #port erbij indien mac
+        user="Foxypiggyfisher",
+        password="Watjewil13",
         database="hotel_database"
     )
 
