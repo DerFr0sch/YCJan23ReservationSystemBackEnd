@@ -2,9 +2,9 @@ import mysql.connector
 
 def sendMembergegevensdb(voornaam, achternaam, voorvoegsel, postcode, adres, land, tel, email, wachtwoord):
     con = mysql.connector.connect(
-        host="ycjanhoteldatabase.mysql.database.azure.com",  #port erbij indien mac
-        user="Kevindatahotel",
-        password="abcd1234ABCD!@#$",
+        host="hoteldatabase1.mysql.database.azure.com",  #port erbij indien mac
+        user="Foxypiggyfisher",
+        password="Watjewil13",
         database="hotel_database"
     )
 
